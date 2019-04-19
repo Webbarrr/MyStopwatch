@@ -23,7 +23,7 @@ namespace MyStopwatch
             if (!IsRunning)
                 throw new InvalidOperationException("The stopwatch has not been started.");
 
-            IsRunning = true;
+            IsRunning = false;
             Duration = DateTime.UtcNow - _startTime;
         }
     }
