@@ -4,35 +4,27 @@ namespace MyStopwatch
 {
     public class Stopwatch
     {
-        private TimeSpan _duration;
-        private DateTime _start;
+        private DateTime _startTime;
 
-        public Stopwatch()
-        {
-            ZeroStart();
-        }
+        public TimeSpan Duration { get; private set; }
+        public bool IsRunning { get; private set; }
 
         public void Start()
         {
-            if (_start != DateTime.MinValue)
+            if (IsRunning)
                 throw new InvalidOperationException("The stopwatch has already been started.");
 
-            _start = DateTime.Now;
+            _startTime = DateTime.UtcNow;
+            IsRunning = true;
         }
 
-        public TimeSpan Stop()
+        public void Stop()
         {
-            if (_start == DateTime.MinValue)
+            if (!IsRunning)
                 throw new InvalidOperationException("The stopwatch has not been started.");
 
-            _duration = DateTime.Now - _start;
-            ZeroStart();
-            return _duration;
-        }
-
-        private void ZeroStart()
-        {
-            _start = DateTime.MinValue;
+            IsRunning = true;
+            Duration = DateTime.UtcNow - _startTime;
         }
     }
 }
