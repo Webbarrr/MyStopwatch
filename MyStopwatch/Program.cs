@@ -11,19 +11,28 @@ namespace MyStopwatch
 
             while (true)
             {
-                var input = Console.ReadLine();
-
-                switch (input.ToLower())
+                try
                 {
-                    case "start":
-                        stopwatch.Start();
-                        break;
-                    case "stop":
-                        Console.WriteLine(stopwatch.Stop());
-                        break;
-                    default:
-                        Console.WriteLine("Sorry I don't recognize that.");
-                        break;
+                    var input = Console.ReadLine();
+
+                    switch (input.ToLower())
+                    {
+                        case "start":
+                            stopwatch.Start();
+                            break;
+                        case "stop":
+                            stopwatch.Stop();
+                            Console.WriteLine(stopwatch.Duration);
+                            break;
+                        default:
+                            Console.WriteLine("Sorry I don't recognize that.");
+                            break;
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
         }
